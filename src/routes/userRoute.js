@@ -2,16 +2,18 @@
 const express = require('express');
 const router = express.Router();
 const {createUser, getUsers, getUserById,updateUser,deleteUser} = require('../controllers/userController');
+const {createUserValidation, getUserByIdValidation,updateUserValidation } = require('../middlewares/validations/userValidation');
+const validator = require ('../middlewares/validations/validator');
 
 
 //4-router for user
 router.route('/user')
-.post(createUser)
+.post(createUserValidation,validator, createUser)
 .get(getUsers);
 
-router.route('/user/:id')
+router.route('/user/:id').all(getUserByIdValidation,validator)
 .get(getUserById)
-.put(updateUser)
+.put(updateUserValidation,validator,updateUser)
 .delete(deleteUser);
 
 

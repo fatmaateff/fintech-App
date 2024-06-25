@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 
 const connectDB = async () => {
     try {
-        await mongoose.connect('mongodb://localhost:27017/fintech')
+        //localhost instead of host.docker.internal
+        await mongoose.connect('mongodb://host.docker.internal:27017/fintech')
         console.log('MongoDB connected')
     }
     catch(err){
