@@ -10,7 +10,9 @@ const {
     withdraw,
     checkBalance
 } = require('../controllers/accountController');
+const validator = require('../middlewares/validations/validator');
 
+const {createAccountValidation, updateAccountValidation, getAccountByIdValidation, transactionValidation} = require('../middlewares/validations/accountValidation');
 // Routes for CRUD operations on accounts
 router.route('/account')
     .post(createAccountValidation,validator,openAccount)  // POST /api/account - Create a new account

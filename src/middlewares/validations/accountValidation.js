@@ -33,5 +33,6 @@ const checkBalanceValidation = [
 module.exports = {
     createAccountValidation,
     updateAccountValidation,
-    getAccountByIdValidation
+    getAccountByIdValidation,
+    transactionValidation
 }
