@@ -1,5 +1,7 @@
 //1-require model user
 const User = require('../models/User');
+
+
 //2-CRUD ON USER
 //2-1-create user
 const createUser = async(req, res) => {

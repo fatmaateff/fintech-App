@@ -1,10 +1,6 @@
 //1-require express
 const express = require('express');
-
-//2-require object express.router
 const router = express.Router();
-
-//3-require controllers
 const {createUser, getUsers, getUserById,updateUser,deleteUser} = require('../controllers/userController');
 
 

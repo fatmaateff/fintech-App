@@ -1,8 +1,9 @@
-console.log('Hello World');
+//requires
 const express = require('express');
 const connectDB = require('./database');
 const userRoute = require('./src/routes/userRoute');
 
+//server initiallization
 const app = express();
 connectDB();
 
