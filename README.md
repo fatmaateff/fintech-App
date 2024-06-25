@@ -1,2 +1,7 @@
-# fintech-App
-This fintech application is designed to manage user accounts and financial transactions. It supports a variety of operations such as account creation, depositing funds, withdrawing funds, and checking account balances. The system is built with Node.js, Express, and MongoDB, ensuring a robust and scalable solution for managing financial data.
+if you want to run the code 
+1 first build docker image using the following command
+docker build -t "api-server" .
+
+then run the docker image using the following command 
+docker compose up
+
