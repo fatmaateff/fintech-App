@@ -5,7 +5,8 @@ const doc = {
     title:'Fintech',
     description: 'Description'
   },
-  host: `localhost:${process.env.PORT || 4000}`,
+  // 9000 for docker, 4000 for local
+  host: `localhost:${9000}`,
 };
 
 const outputFile = './swagger-output.json';

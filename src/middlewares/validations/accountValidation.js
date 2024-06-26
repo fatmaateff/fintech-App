@@ -1,23 +1,13 @@
 const {body , param} = require('express-validator');
 
-const createAccountValidation = [
-    body('name').notEmpty().withMessage('Name is required'),
-    body('email').notEmpty().withMessage('Email is required').isEmail().withMessage('Email is not valid'),
-    body('password').notEmpty().withMessage('Password is required').isLength({min: 6}).withMessage('Password must be at least 6 characters long')
-];
-
-const updateAccountValidation = [
-    body('name').optional().notEmpty().withMessage('Name is required'),
-    body('email').optional().notEmpty().withMessage('Email is required').isEmail().withMessage('Email is not valid'),
-    body('password').optional().notEmpty().withMessage('Password is required').isLength({min: 6}).withMessage('Password must be at least 6 characters long')
-];
 
 const getAccountByIdValidation = [
     param('id').notEmpty().withMessage('Id is required')
 ];
 
-const openAccountValidation = [
-    body('balance').notEmpty().withMessage('Balance is required').isNumeric().withMessage('Balance must be a number')
+const AccountValidation = [
+    body('balance').notEmpty().withMessage('Balance is required').isNumeric().withMessage('Balance must be a number'),
+    body('userId').notEmpty().withMessage('User Id is required').isMongoId().withMessage('User Id is not valid')
 ];
 
 const transactionValidation = [
@@ -31,8 +21,8 @@ const checkBalanceValidation = [
 
 
 module.exports = {
-    createAccountValidation,
-    updateAccountValidation,
+
     getAccountByIdValidation,
-    transactionValidation
+    transactionValidation,
+    AccountValidation
 }

@@ -58,7 +58,7 @@ const openAccount = async (req, res) => {
         }
         let account = await Account.findOne({userId: req.body.userId});
 
-        if(!account) return res.status(404).json({message: 'User already has an account', data: null, error: null});
+        if(account) return res.status(404).json({message: 'User already has an account', data: null, error: null});
 
         account = new Account({ userId: user._id });
         await account.save();
@@ -97,14 +97,14 @@ const withdraw = async(req,res) => {
         const account = await Account.findById(req.params.id);
         if(!account) return res.status(404).json({message: 'account not found', data: null, error: null});
         
-        const transaction = new Transaction({type: 'withdrawal', amount: req.body.amount, accountId: account._id, status: "rejected"});
+        let transaction = new Transaction({type: 'withdrawal', amount: req.body.amount, accountId: account._id, status: "rejected"});
         if(account.balance < Number.parseInt(req.body.amount)){
             await transaction.save();
             return res.status(400).json({error: 'insufficient balance'});
         }
 
         account.balance -= Number.parseInt(req.body.amount);
-        transactiom.status = "accepted";
+        transaction.status = "accepted";
         await account.save();
         await transaction.save();
         res.status(201).json(transaction);

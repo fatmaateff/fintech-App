@@ -5,7 +5,7 @@
     "description": "Description",
     "version": "1.0.0"
   },
-  "host": "localhost:4000",
+  "host": "localhost:9000",
   "basePath": "/",
   "schemes": [
     "http"
@@ -14,6 +14,7 @@
     "/users/user": {
       "get": {
         "description": "",
+        "tags": ["user"],
         "responses": {
           "200": {
             "description": "OK"
@@ -25,6 +26,31 @@
       },
       "post": {
         "description": "",
+        "tags": ["user"],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "John Doe"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "john.doe@example.com"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "password123"
+                }
+              }
+            }
+          }
+        ],
         "responses": {
           "201": {
             "description": "Created"
@@ -38,9 +64,10 @@
         }
       }
     },
-    "/users/{id}": {
+    "/users/user/{id}": {
       "get": {
         "description": "",
+        "tags": ["user"],
         "parameters": [
           {
             "name": "id",
@@ -60,12 +87,35 @@
       },
       "put": {
         "description": "",
+        "tags": ["user"],
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "Jane Doe"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "jane.doe@example.com"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "newpassword123"
+                }
+              }
+            }
           }
         ],
         "responses": {
@@ -82,6 +132,7 @@
       },
       "delete": {
         "description": "",
+        "tags": ["user"],
         "parameters": [
           {
             "name": "id",
@@ -100,9 +151,10 @@
         }
       }
     },
-    "/account": {
+    "/accounts/account": {
       "get": {
         "description": "",
+        "tags": ["account"],
         "responses": {
           "200": {
             "description": "OK"
@@ -114,15 +166,22 @@
       },
       "post": {
         "description": "",
+        "tags": ["account"],
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
               "properties": {
+                "balance": {
+                  "type": "number",
+                  "example": 1000
+                },
                 "userId": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "60b8d5f9f8b4b9c1a8f4a5c7"
                 }
               }
             }
@@ -144,9 +203,10 @@
         }
       }
     },
-    "/account/{id}": {
+    "/accounts/account/{id}": {
       "get": {
         "description": "",
+        "tags": ["account"],
         "parameters": [
           {
             "name": "id",
@@ -166,12 +226,31 @@
       },
       "put": {
         "description": "",
+        "tags": ["account"],
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "balance": {
+                  "type": "number",
+                  "example": 2000
+                },
+                "userId": {
+                  "type": "string",
+                  "example": "60b8d5f9f8b4b9c1a8f4a5c7"
+                }
+              }
+            }
           }
         ],
         "responses": {
@@ -188,6 +267,7 @@
       },
       "delete": {
         "description": "",
+        "tags": ["account"],
         "parameters": [
           {
             "name": "id",
@@ -206,9 +286,10 @@
         }
       }
     },
-    "/account/deposit/{id}": {
+    "/accounts/account/deposit/{id}": {
       "post": {
         "description": "",
+        "tags": ["account"],
         "parameters": [
           {
             "name": "id",
@@ -219,11 +300,13 @@
           {
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
               "properties": {
                 "amount": {
-                  "example": "any"
+                  "type": "number",
+                  "example": 500
                 }
               }
             }
@@ -245,9 +328,10 @@
         }
       }
     },
-    "/account/withdraw/{id}": {
+    "/accounts/account/withdraw/{id}": {
       "post": {
         "description": "",
+        "tags": ["account"],
         "parameters": [
           {
             "name": "id",
@@ -258,11 +342,13 @@
           {
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
               "properties": {
                 "amount": {
-                  "example": "any"
+                  "type": "number",
+                  "example": 200
                 }
               }
             }
@@ -287,9 +373,10 @@
         }
       }
     },
-    "/account/balance/{id}": {
+    "/accounts/account/balance/{id}": {
       "get": {
         "description": "",
+        "tags": ["account"],
         "parameters": [
           {
             "name": "id",
@@ -311,9 +398,10 @@
         }
       }
     },
-    "/{accountId}": {
+    "/transactions/{accountId}": {
       "get": {
         "description": "",
+        "tags": ["transaction"],
         "parameters": [
           {
             "name": "accountId",
@@ -335,9 +423,10 @@
         }
       }
     },
-    "/transaction/{id}": {
+    "/transactions/transaction/{id}": {
       "get": {
         "description": "",
+        "tags": ["transaction"],
         "parameters": [
           {
             "name": "id",
