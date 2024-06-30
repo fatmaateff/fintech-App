@@ -13,10 +13,10 @@
   "paths": {
     "/users/user": {
       "get": {
-        "description": "",
+        "description": "get all users",
         "tags": ["user"],
         "responses": {
-          "200": {
+         "200": {
             "description": "OK"
           },
           "500": {

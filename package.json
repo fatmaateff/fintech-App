@@ -4,7 +4,9 @@
   "main": "app.js",
   "scripts": {
     "test": "nodemon",
-    "start": "node app"
+    "startt": "node app",
+    "build": "docker build -t api-server .",
+    "start": "docker compose up"
   },
   "keywords": [],
   "author": "",
