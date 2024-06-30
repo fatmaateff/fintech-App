@@ -2,7 +2,8 @@
 const account = require('../models/Account');
 const Transaction = require('../models/Transaction');
 const User = require('../models/User');
-const Account = require('../models/Account')
+const Account = require('../models/Account');
+const { body } = require('express-validator');
 
 //2-CRUD for account
 //2-1-get all accounts
@@ -41,6 +42,7 @@ const updateAccount = async(req,res) => {
 const deleteAccount = async(req,res) => {
     try {
         const account = await Account.findByIdAndDelete(req.params.id);
+        if(!account) return res.status(404).json({message: 'account not found', data: null, error: null});
         res.status(200).json({message: 'account deleted'});
     }
     catch(err){
@@ -60,7 +62,7 @@ const openAccount = async (req, res) => {
 
         if(account) return res.status(404).json({message: 'User already has an account', data: null, error: null});
 
-        account = new Account({ userId: user._id });
+        account = new Account({ userId: user._id, balance: req.body.balance || 0 });
         await account.save();
 
         res.status(201).json(account);
